@@ -1,0 +1,6 @@
+<%- include('../partials/header', { title: 'Payment Records' }) %>
+<section class="admin-section"><div class="section-heading"><div><span class="eyebrow">ADMIN</span><h1>Payment Records</h1></div></div>
+<div class="table-wrap"><table><thead><tr><th>Transaction</th><th>Order</th><th>Customer</th><th>Method</th><th>Reference</th><th>Amount</th><th>Status</th></tr></thead><tbody>
+<% payments.forEach(p=>{ %><tr><td><strong><%= p.transaction_id %></strong></td><td>#ORD-<%= p.order_id %></td><td><%= p.customer_name %></td><td><%= p.method %></td><td><%= p.masked_reference || '-' %></td><td>₹<%= Number(p.amount).toFixed(2) %></td><td><span class="status-success"><%= p.status %></span></td></tr><% }) %>
+</tbody></table></div></section>
+<%- include('../partials/footer') %>

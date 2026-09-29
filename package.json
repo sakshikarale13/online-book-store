@@ -1,0 +1,17 @@
+{
+  "name": "online-book-store",
+  "version": "1.0.0",
+  "description": "Online Book Store using Node.js, Express, EJS and MySQL",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "mysql2": "^3.11.5"
+  }
+}

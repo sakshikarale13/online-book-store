@@ -1,0 +1,16 @@
+<%- include('partials/header', { title: book.title }) %>
+<section class="detail-page">
+  <div class="detail-image"><img src="<%= book.image %>" alt="<%= book.title %>" onerror="this.src='https://placehold.co/600x800?text=Book'"></div>
+  <div class="detail-content">
+    <span class="eyebrow">BOOK DETAILS</span>
+    <h1><%= book.title %></h1>
+    <p class="detail-author">by <%= book.author %></p>
+    <div class="price">₹<%= Number(book.price).toFixed(2) %></div>
+    <p><%= book.description %></p>
+    <form method="POST" action="/cart/add/<%= book.id %>">
+      <button class="btn primary" type="submit">🛒 Add to Cart</button>
+      <a href="/catalogue" class="btn secondary">Back to Catalogue</a>
+    </form>
+  </div>
+</section>
+<%- include('partials/footer') %>

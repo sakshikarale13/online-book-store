@@ -1,0 +1,27 @@
+<%- include('../partials/header', { title: 'Manage Books' }) %>
+<section class="admin-section">
+  <div class="section-heading">
+    <div><span class="eyebrow">ADMIN</span><h1>Manage Books</h1></div>
+    <a href="/admin/books/add" class="btn primary">+ Add Book</a>
+  </div>
+  <% if (message) { %><div class="alert success"><%= message %></div><% } %>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Book</th><th>Author</th><th>Price</th><th>Actions</th></tr></thead>
+      <tbody>
+      <% books.forEach(book => { %>
+        <tr>
+          <td><div class="table-book"><img src="<%= book.image %>" onerror="this.src='https://placehold.co/60x80?text=Book'"><strong><%= book.title %></strong></div></td>
+          <td><%= book.author %></td>
+          <td>₹<%= Number(book.price).toFixed(2) %></td>
+          <td class="actions">
+            <a href="/admin/books/edit/<%= book.id %>" class="small-btn">Edit</a>
+            <form method="POST" action="/admin/books/delete/<%= book.id %>" onsubmit="return confirm('Delete this book?')"><button class="danger-btn">Delete</button></form>
+          </td>
+        </tr>
+      <% }) %>
+      </tbody>
+    </table>
+  </div>
+</section>
+<%- include('../partials/footer') %>

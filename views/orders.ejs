@@ -1,0 +1,10 @@
+<%- include('partials/header', { title: 'My Orders' }) %>
+<section class="page-banner"><span class="eyebrow">ACCOUNT</span><h1>My Orders</h1><p>Track your BookNest purchases.</p></section>
+<section class="admin-section">
+<% if (!orders.length) { %><div class="empty"><h2>No orders yet</h2><a href="/catalogue" class="btn primary">Browse Catalogue</a></div><% } else { %>
+<div class="table-wrap"><table><thead><tr><th>Order</th><th>Date</th><th>Total</th><th>Payment</th><th>Status</th><th></th></tr></thead><tbody>
+<% orders.forEach(o=>{ %><tr><td><strong>#ORD-<%= o.id %></strong></td><td><%= new Date(o.created_at).toLocaleDateString() %></td><td>₹<%= Number(o.total_amount).toFixed(2) %></td><td><%= o.method %></td><td><span class="order-status <%= o.status.toLowerCase() %>"><%= o.status %></span></td><td><a class="small-btn" href="/orders/<%= o.id %>">View</a></td></tr><% }) %>
+</tbody></table></div>
+<% } %>
+</section>
+<%- include('partials/footer') %>

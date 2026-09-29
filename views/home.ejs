@@ -1,0 +1,52 @@
+<%- include('partials/header', { title: 'Home' }) %>
+
+<section class="hero">
+  <div class="hero-content">
+    <span class="eyebrow">WELCOME TO BOOKNEST</span>
+    <h1>Find your next<br><span>great read.</span></h1>
+    <p>Explore a carefully selected collection of books for learning, inspiration, technology and everyday life.</p>
+    <div class="hero-actions">
+      <a href="/catalogue" class="btn primary">Browse Catalogue →</a>
+      <% if (!user) { %><a href="/register" class="btn secondary">Create Account</a><% } %>
+    </div>
+  </div>
+  <div class="hero-card">
+    <div class="book-stack">📚</div>
+    <p>Discover. Learn. Grow.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-heading">
+    <div><span class="eyebrow">OUR COLLECTION</span><h2>Featured Books</h2></div>
+    <a href="/catalogue" class="text-link">View all →</a>
+  </div>
+
+  <div class="book-grid">
+    <% books.forEach(book => { %>
+      <article class="book-card">
+        <img src="<%= book.image %>" alt="<%= book.title %>" onerror="this.src='https://placehold.co/600x800?text=Book'">
+        <div class="book-info">
+          <span class="book-category">BOOK</span>
+          <h3><%= book.title %></h3>
+          <p class="author">by <%= book.author %></p>
+          <div class="book-bottom">
+            <strong>₹<%= Number(book.price).toFixed(2) %></strong>
+            <div class="book-actions">
+  <a href="/book/<%= book.id %>" class="small-btn">Details</a>
+  <form method="POST" action="/cart/add/<%= book.id %>"><button class="small-btn add-btn">+ Cart</button></form>
+</div>
+          </div>
+        </div>
+      </article>
+    <% }) %>
+  </div>
+</section>
+
+<section class="features">
+  <div class="feature"><span>🔎</span><h3>Easy Discovery</h3><p>Search and explore books quickly.</p></div>
+  <div class="feature"><span>🗄️</span><h3>Database Powered</h3><p>Book and user data is stored in MySQL.</p></div>
+  <div class="feature"><span>📱</span><h3>Responsive</h3><p>Works across desktop, tablet and mobile.</p></div>
+</section>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,24 @@
+XAMPP QUICK START
+
+1. Open XAMPP Control Panel.
+2. Start MySQL.
+3. Open http://localhost/phpmyadmin
+4. Open the SQL tab.
+5. Run database/bookstore.sql
+6. Open this project in VS Code.
+7. Run: npm install
+8. Run: node app.js
+9. Open: http://localhost:3000
+
+Default XAMPP DB:
+Host: 127.0.0.1
+Port: 3306
+User: root
+Password: empty
+Database: bookstore
+
+Admin:
+admin@bookstore.com / admin123
+
+Client:
+client@bookstore.com / client123

@@ -1,0 +1,40 @@
+<%- include('partials/header', { title: 'Catalogue' }) %>
+<section class="page-banner">
+  <span class="eyebrow">EXPLORE</span>
+  <h1>Book Catalogue</h1>
+  <p>Find books by title or author.</p>
+</section>
+
+<section class="section catalogue-section">
+  <form class="search-bar" method="GET" action="/catalogue">
+    <input type="search" name="search" value="<%= search %>" placeholder="Search by title or author...">
+    <button class="btn primary" type="submit">Search</button>
+    <% if (search) { %><a href="/catalogue" class="btn secondary">Clear</a><% } %>
+  </form>
+
+  <% if (!books.length) { %>
+    <div class="empty"><h2>No books found</h2><p>Try another title or author.</p></div>
+  <% } else { %>
+    <div class="book-grid">
+      <% books.forEach(book => { %>
+        <article class="book-card">
+          <img src="<%= book.image %>" alt="<%= book.title %>" onerror="this.src='https://placehold.co/600x800?text=Book'">
+          <div class="book-info">
+            <span class="book-category">BOOK</span>
+            <h3><%= book.title %></h3>
+            <p class="author">by <%= book.author %></p>
+            <p class="description"><%= book.description %></p>
+            <div class="book-bottom">
+              <strong>₹<%= Number(book.price).toFixed(2) %></strong>
+              <div class="book-actions">
+  <a href="/book/<%= book.id %>" class="small-btn">Details</a>
+  <form method="POST" action="/cart/add/<%= book.id %>"><button class="small-btn add-btn">+ Cart</button></form>
+</div>
+            </div>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  <% } %>
+</section>
+<%- include('partials/footer') %>

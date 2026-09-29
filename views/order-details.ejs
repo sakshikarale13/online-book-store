@@ -1,0 +1,9 @@
+<%- include('partials/header', { title: 'Order Details' }) %>
+<section class="page-banner"><span class="eyebrow">ORDER #ORD-<%= order.id %></span><h1>Order Details</h1><p><%= new Date(order.created_at).toLocaleString() %></p></section>
+<section class="checkout-page">
+<div class="checkout-card"><span class="eyebrow">ITEMS</span><h2>Purchased Books</h2>
+<% items.forEach(item=>{ %><div class="summary-row"><span><%= item.title %> × <%= item.quantity %></span><strong>₹<%= (Number(item.price)*item.quantity).toFixed(2) %></strong></div><% }) %>
+<div class="summary-row total"><span>Total</span><strong>₹<%= Number(order.total_amount).toFixed(2) %></strong></div></div>
+<aside class="summary-card"><span class="eyebrow">STATUS</span><h2><span class="order-status <%= order.status.toLowerCase() %>"><%= order.status %></span></h2><p><strong>Payment:</strong> <%= order.method %></p><p><strong>Payment Status:</strong> <%= order.payment_status %></p><p><strong>Transaction:</strong> <%= order.transaction_id %></p><p><strong>Delivery:</strong><br><%= order.shipping_name %><br><%= order.shipping_phone %><br><%= order.shipping_address %></p></aside>
+</section>
+<%- include('partials/footer') %>

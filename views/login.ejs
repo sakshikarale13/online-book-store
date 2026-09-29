@@ -1,0 +1,19 @@
+<%- include('partials/header', { title: 'Login' }) %>
+<div class="auth-page">
+  <div class="auth-card">
+    <div class="auth-icon">🔐</div>
+    <span class="eyebrow">WELCOME BACK</span>
+    <h1>Login to BookNest</h1>
+    <p class="muted">Access your account and continue exploring.</p>
+    <% if (error) { %><div class="alert error"><%= error %></div><% } %>
+    <form method="POST" action="/login">
+      <label>Email</label>
+      <input type="email" name="email" placeholder="you@example.com" required>
+      <label>Password</label>
+      <input type="password" name="password" placeholder="Enter password" required>
+      <button class="btn primary full" type="submit">Login</button>
+    </form>
+    <p class="form-foot">Don't have an account? <a href="/register">Register here</a></p>
+  </div>
+</div>
+<%- include('partials/footer') %>

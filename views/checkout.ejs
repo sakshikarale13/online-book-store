@@ -1,0 +1,18 @@
+<%- include('partials/header', { title: 'Checkout' }) %>
+<section class="page-banner"><span class="eyebrow">CHECKOUT</span><h1>Delivery Details</h1><p>Enter the details where your order should be delivered.</p></section>
+<section class="checkout-page">
+  <div class="checkout-card">
+    <% if (error) { %><div class="alert error"><%= error %></div><% } %>
+    <form method="POST" action="/checkout">
+      <label>Full Name</label><input name="shipping_name" value="<%= user.name %>" required>
+      <label>Phone Number</label><input name="shipping_phone" type="tel" placeholder="10-digit mobile number" required>
+      <label>Delivery Address</label><textarea name="shipping_address" rows="5" placeholder="House/Flat, Street, City, State, PIN" required></textarea>
+      <button class="btn primary full" type="submit">Continue to Payment →</button>
+    </form>
+  </div>
+  <aside class="summary-card"><span class="eyebrow">ORDER</span><h2>Your Order</h2>
+    <% cart.forEach(item => { %><div class="summary-row"><span><%= item.title %> × <%= item.quantity %></span><span>₹<%= (Number(item.price)*item.quantity).toFixed(2) %></span></div><% }) %>
+    <div class="summary-row total"><span>Total</span><strong>₹<%= total.toFixed(2) %></strong></div>
+  </aside>
+</section>
+<%- include('partials/footer') %>

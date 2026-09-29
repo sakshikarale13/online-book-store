@@ -1,0 +1,13 @@
+<%- include('../partials/header', { title: 'Admin Dashboard' }) %>
+<section class="admin-banner"><span class="eyebrow">ADMINISTRATION</span><h1>Dashboard</h1><p>Welcome, <%= user.name %>. Manage your bookstore from here.</p></section>
+<section class="admin-section">
+  <div class="stats four"><div class="stat"><span>📚</span><small>Total Books</small><strong><%= bookCount %></strong></div><div class="stat"><span>👥</span><small>Registered Clients</small><strong><%= userCount %></strong></div><div class="stat"><span>📦</span><small>Total Orders</small><strong><%= orderCount %></strong></div><div class="stat"><span>💰</span><small>Successful Sales</small><strong>₹<%= Number(sales).toFixed(2) %></strong></div></div>
+  <div class="admin-actions">
+    <a class="admin-action" href="/admin/books"><span>📚</span><div><h3>Manage Books</h3><p>Add, edit and delete catalogue books.</p></div>→</a>
+    <a class="admin-action" href="/admin/books/add"><span>➕</span><div><h3>Add New Book</h3><p>Add a new title to the catalogue.</p></div>→</a>
+    <a class="admin-action" href="/admin/orders"><span>📦</span><div><h3>Manage Orders</h3><p>Review orders and update delivery status.</p></div>→</a>
+    <a class="admin-action" href="/admin/payments"><span>💳</span><div><h3>Payment Records</h3><p>View simulated payment transactions.</p></div>→</a>
+    <a class="admin-action" href="/admin/users"><span>👥</span><div><h3>View Clients</h3><p>See registered client accounts.</p></div>→</a>
+  </div>
+</section>
+<%- include('../partials/footer') %>

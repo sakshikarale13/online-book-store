@@ -1,0 +1,7 @@
+<%- include('../partials/header', { title: 'Manage Orders' }) %>
+<section class="admin-section"><div class="section-heading"><div><span class="eyebrow">ADMIN</span><h1>Manage Orders</h1></div></div>
+<% if (message) { %><div class="alert success"><%= message %></div><% } %>
+<div class="table-wrap"><table><thead><tr><th>Order</th><th>Customer</th><th>Amount</th><th>Payment</th><th>Order Status</th><th>Update</th></tr></thead><tbody>
+<% orders.forEach(o=>{ %><tr><td><strong>#ORD-<%= o.id %></strong><br><small><%= new Date(o.created_at).toLocaleDateString() %></small></td><td><%= o.customer_name %><br><small><%= o.customer_email %></small></td><td>₹<%= Number(o.total_amount).toFixed(2) %></td><td><%= o.method %><br><small><%= o.payment_status %></small></td><td><span class="order-status <%= o.status.toLowerCase() %>"><%= o.status %></span></td><td><form method="POST" action="/admin/orders/<%= o.id %>/status" class="status-form"><select name="status"><% ['Pending','Confirmed','Shipped','Delivered','Cancelled'].forEach(s=>{ %><option value="<%= s %>" <%= s===o.status?'selected':'' %>><%= s %></option><% }) %></select><button class="small-btn">Save</button></form></td></tr><% }) %>
+</tbody></table></div></section>
+<%- include('../partials/footer') %>

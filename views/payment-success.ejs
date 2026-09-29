@@ -1,0 +1,18 @@
+<%- include('partials/header', { title: 'Payment Successful' }) %>
+<div class="success-page">
+  <div class="success-card">
+    <div class="success-icon">✓</div>
+    <span class="eyebrow">ORDER CONFIRMED</span>
+    <h1><%= paymentStatus === 'Successful' ? 'Payment Successful!' : 'Order Placed Successfully!' %></h1>
+    <p class="muted">Thank you for shopping with BookNest. This is a simulated payment confirmation.</p>
+    <div class="receipt">
+      <div><span>Order ID</span><strong>#ORD-<%= orderId %></strong></div>
+      <div><span>Transaction ID</span><strong><%= transactionId %></strong></div>
+      <div><span>Payment Method</span><strong><%= method %></strong></div>
+      <div><span>Amount</span><strong>₹<%= Number(amount).toFixed(2) %></strong></div>
+      <div><span>Payment Status</span><strong class="status-success"><%= paymentStatus %></strong></div>
+    </div>
+    <div class="hero-actions"><a href="/orders/<%= orderId %>" class="btn primary">View Order</a><a href="/catalogue" class="btn secondary">Continue Shopping</a></div>
+  </div>
+</div>
+<%- include('partials/footer') %>

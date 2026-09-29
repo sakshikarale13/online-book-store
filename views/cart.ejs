@@ -1,0 +1,32 @@
+<%- include('partials/header', { title: 'Shopping Cart' }) %>
+<section class="page-banner"><span class="eyebrow">YOUR BAG</span><h1>Shopping Cart</h1><p>Review your books before checkout.</p></section>
+<section class="cart-page">
+<% if (!cart.length) { %>
+  <div class="empty"><div class="empty-icon">🛒</div><h2>Your cart is empty</h2><p>Discover a book and add it to your cart.</p><a href="/catalogue" class="btn primary">Browse Books</a></div>
+<% } else { %>
+  <div class="cart-layout">
+    <div class="cart-items">
+      <% cart.forEach(item => { %>
+        <div class="cart-item">
+          <img src="<%= item.image %>" onerror="this.src='https://placehold.co/100x130?text=Book'">
+          <div class="cart-item-info"><span class="book-category">BOOK</span><h3><%= item.title %></h3><p>by <%= item.author %></p>
+            <strong>₹<%= Number(item.price).toFixed(2) %></strong></div>
+          <form method="POST" action="/cart/update/<%= item.id %>" class="qty-form"><label>Qty</label><input type="number" name="quantity" min="1" max="20" value="<%= item.quantity %>"><button class="small-btn">Update</button></form>
+          <div class="line-total">₹<%= (Number(item.price)*item.quantity).toFixed(2) %></div>
+          <form method="POST" action="/cart/remove/<%= item.id %>"><button class="icon-btn" title="Remove">×</button></form>
+        </div>
+      <% }) %>
+      <form method="POST" action="/cart/clear"><button class="text-danger">Clear cart</button></form>
+    </div>
+    <aside class="summary-card">
+      <span class="eyebrow">ORDER SUMMARY</span><h2>Summary</h2>
+      <div class="summary-row"><span>Items</span><span><%= cart.reduce((s,i)=>s+i.quantity,0) %></span></div>
+      <div class="summary-row"><span>Delivery</span><span>Free</span></div>
+      <div class="summary-row total"><span>Total</span><strong>₹<%= total.toFixed(2) %></strong></div>
+      <a href="/checkout" class="btn primary full">Proceed to Checkout →</a>
+      <a href="/catalogue" class="btn secondary full">Continue Shopping</a>
+    </aside>
+  </div>
+<% } %>
+</section>
+<%- include('partials/footer') %>
